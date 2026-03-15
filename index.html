@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MassPub | Agence de Publicité Digitale Performante</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+        --red:      #FF3E41;
+        --red-dark: #CC2E30;
+        --yellow:   #FFC107;
+        --dark:     #0D0D0D;
+        --dark2:    #141414;
+        --dark3:    #1C1C1C;
+        --white:    #F5F1EB;
+        --gray:     #888;
+        --border:   rgba(255,255,255,0.08);
+        --ease:     cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: 'DM Sans', sans-serif;
+        background: #fff;
+        color: #222;
+        overflow-x: hidden;
+        padding-top: 72px;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+    }
+
+    /* ===================== SCROLLBAR ===================== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--red); }
+
+    /* ===================== NAV ===================== */
+    header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        transition: box-shadow 0.3s ease;
+    }
+
+    header.scrolled {
+        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+
+    .navbar { padding: 0.9rem 0; }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+
+    .brand-text {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        color: var(--dark);
+        line-height: 1;
+    }
+
+    .brand-text span { color: var(--red); }
+
+    .brand-dot {
+        width: 8px; height: 8px;
+        background: var(--red);
+        border-radius: 50%;
+        animation: pulse-dot 1.8s ease infinite;
+        flex-shrink: 0;
+    }
+
+    @keyframes pulse-dot {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .nav-link {
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #444 !important;
+        letter-spacing: 0.3px;
+        padding: 0.4rem 0 !important;
+        position: relative;
+        transition: color 0.2s;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0; height: 2px;
+        background: var(--red);
+        bottom: 0; left: 0;
+        transition: width 0.3s var(--ease);
+    }
+
+    .nav-link:hover { color: var(--red) !important; }
+    .nav-link:hover::after { width: 100%; }
+
+    .btn-nav {
+        background: var(--red);
+        color: white !important;
+        padding: 0.55rem 1.4rem !important;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.88rem;
+        letter-spacing: 0.5px;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-nav::after { display: none !important; }
+
+    .btn-nav:hover {
+        background: var(--red-dark) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(255,62,65,0.35);
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+        min-height: calc(100vh - 72px);
+        background: var(--dark);
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Animated grid bg */
+    .hero-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    /* Glows */
+    .hero-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+    }
+
+    .glow-red {
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(255,62,65,0.18), transparent 70%);
+        top: -100px; right: -100px;
+    }
+
+    .glow-yellow {
+        width: 400px; height: 400px;
+        background: radial-gradient(circle, rgba(255,193,7,0.08), transparent 70%);
+        bottom: -50px; left: 10%;
+    }
+
+    /* Ticker bar */
+    .hero-ticker {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        padding: 9px 0;
+        background: rgba(255,255,255,0.02);
+    }
+
+    .ticker-track {
+        display: flex;
+        gap: 60px;
+        animation: ticker 22s linear infinite;
+        white-space: nowrap;
+    }
+
+    .ticker-item {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.3);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .ticker-item .sep { color: var(--red); font-size: 0.5rem; }
+
+    @keyframes ticker {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 80px 0 60px;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,62,65,0.12);
+        border: 1px solid rgba(255,62,65,0.25);
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ff8a8b;
+        margin-bottom: 28px;
+        animation: fadeUp 0.7s var(--ease) 0.1s both;
+    }
+
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+
+    .hero-title {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.6rem, 5.5vw, 5rem);
+        line-height: 1.08;
+        color: var(--white);
+        letter-spacing: -1px;
+        margin-bottom: 28px;
+        animation: fadeUp 0.7s var(--ease) 0.25s both;
+    }
+
+    .hero-title .accent { color: var(--red); }
+    .hero-title .outline {
+        -webkit-text-stroke: 1px rgba(245,241,235,0.3);
+        color: transparent;
+    }
+
+    .hero-sub {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: rgba(245,241,235,0.55);
+        max-width: 480px;
+        margin-bottom: 40px;
+        font-weight: 300;
+        animation: fadeUp 0.7s var(--ease) 0.4s both;
+    }
+
+    .hero-sub strong { color: rgba(245,241,235,0.85); font-weight: 500; }
+
+    .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.7s var(--ease) 0.55s both;
+    }
+
+    .btn-primary-main {
+        background: var(--red);
+        color: white;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-primary-main:hover {
+        background: var(--red-dark);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255,62,65,0.4);
+    }
+
+    .btn-ghost {
+        background: transparent;
+        color: rgba(245,241,235,0.7);
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.12);
+        transition: border-color 0.2s, color 0.2s, background 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-ghost:hover {
+        border-color: rgba(255,255,255,0.3);
+        color: white;
+        background: rgba(255,255,255,0.05);
+    }
+
+    /* Hero stats */
+    .hero-stats {
+        display: flex;
+        gap: 0;
+        margin-top: 60px;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        padding-top: 40px;
+        animation: fadeUp 0.7s var(--ease) 0.7s both;
+    }
+
+    .hero-stat {
+        flex: 1;
+        padding-right: 32px;
+        border-right: 1px solid rgba(255,255,255,0.07);
+        margin-right: 32px;
+    }
+
+    .hero-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .hero-stat-num {
+        font-family: 'Syne', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: var(--red);
+        line-height: 1;
+        margin-bottom: 6px;
+        letter-spacing: -1px;
+    }
+
+    .hero-stat-label {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.4);
+        letter-spacing: 0.5px;
+        line-height: 1.4;
+    }
+
+    /* Right column visual */
+    .hero-visual {
+        position: relative;
+        z-index: 2;
+        animation: fadeUp 0.9s var(--ease) 0.4s both;
+    }
+
+    .hero-card-main {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 28px;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-card-main::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--red), var(--yellow));
+    }
+
+    .card-label {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.4);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .card-label::before {
+        content: '';
+        width: 20px; height: 1px;
+        background: var(--red);
+    }
+
+    .metric-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+
+    .metric-bar-label {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.6);
+        width: 110px;
+        flex-shrink: 0;
+    }
+
+    .metric-bar-track {
+        flex: 1;
+        height: 6px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 0 12px;
+    }
+
+    .metric-bar-fill {
+        height: 100%;
+        border-radius: 3px;
+        animation: bar-grow 1.5s var(--ease) 1s both;
+        transform-origin: left;
+    }
+
+    @keyframes bar-grow {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+    }
+
+    .fill-red  { background: linear-gradient(90deg, var(--red), #ff6b6d); }
+    .fill-yellow { background: linear-gradient(90deg, var(--yellow), #ffd54f); }
+    .fill-blue { background: linear-gradient(90deg, #4A9EFF, #74b9ff); }
+    .fill-green { background: linear-gradient(90deg, #00C897, #55efc4); }
+
+    .metric-val {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: white;
+        width: 40px;
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    .hero-card-secondary {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 20px 24px;
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .big-metric {
+        font-family: 'Syne', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: var(--red);
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+
+    .big-metric-label {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.4;
+    }
+
+    /* ===================== BRANDS STRIP ===================== */
+    .brands-strip {
+        background: #F7F5F2;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        padding: 18px 0;
+        overflow: hidden;
+    }
+
+    .brands-track {
+        display: flex;
+        gap: 64px;
+        animation: marquee 20s linear infinite;
+        white-space: nowrap;
+    }
+
+    .brand-item {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        color: rgba(0,0,0,0.12);
+        flex-shrink: 0;
+        transition: color 0.3s;
+        text-transform: uppercase;
+    }
+
+    .brand-item:hover { color: var(--red); }
+    .brand-item .sep { color: var(--red); margin: 0 16px; font-size: 0.6rem; vertical-align: middle; }
+
+    @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+
+    /* ===================== SECTION COMMONS ===================== */
+    section { padding: 100px 0; }
+
+    .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+    .section-tag::before {
+        content: '';
+        width: 24px; height: 2px;
+        background: var(--red);
+    }
+
+    .section-title {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        color: var(--dark);
+        margin-bottom: 16px;
+        letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        color: var(--gray);
+        line-height: 1.7;
+        max-width: 520px;
+        font-weight: 300;
+    }
+
+    /* ===================== SERVICES ===================== */
+    #services { background: #fff; }
+
+    .services-intro { margin-bottom: 64px; }
+
+    .service-card {
+        background: white;
+        border: 1px solid rgba(0,0,0,0.07);
+        border-radius: 16px;
+        padding: 36px 32px;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
+        cursor: default;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--red), var(--yellow));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s var(--ease);
+    }
+
+    .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 24px 60px rgba(0,0,0,0.1);
+        border-color: rgba(255,62,65,0.2);
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-num {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
+
+    .service-icon-wrap {
+        width: 52px; height: 52px;
+        background: rgba(255,62,65,0.08);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 22px;
+        transition: background 0.3s;
+    }
+
+    .service-card:hover .service-icon-wrap { background: rgba(255,62,65,0.14); }
+
+    .service-name {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--dark);
+        margin-bottom: 12px;
+    }
+
+    .service-desc {
+        font-size: 0.9rem;
+        color: var(--gray);
+        line-height: 1.7;
+        font-weight: 300;
+        margin-bottom: 24px;
+    }
+
+    .service-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .stag {
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+        padding: 4px 10px;
+        border-radius: 100px;
+        background: rgba(0,0,0,0.04);
+        color: var(--gray);
+        border: 1px solid rgba(0,0,0,0.07);
+    }
+
+    /* ===================== RESULTS ===================== */
+    #results { background: var(--dark); color: white; }
+
+    .result-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 40px 32px;
+        height: 100%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s var(--ease), border-color 0.3s;
+    }
+
+    .result-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--red), var(--yellow));
+        transform: scaleX(0);
+        transition: transform 0.4s var(--ease);
+    }
+
+    .result-card:hover { transform: translateY(-6px); border-color: rgba(255,62,65,0.2); }
+    .result-card:hover::after { transform: scaleX(1); }
+
+    .result-icon {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .stat-number {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.8rem, 5vw, 4rem);
+        color: var(--red);
+        line-height: 1;
+        letter-spacing: -2px;
+        margin-bottom: 10px;
+    }
+
+    .stat-desc {
+        font-size: 0.88rem;
+        color: rgba(255,255,255,0.45);
+        line-height: 1.5;
+        font-weight: 300;
+    }
+
+    .results-cta-text {
+        font-size: 1rem;
+        color: rgba(255,255,255,0.5);
+        text-align: center;
+    }
+
+    .results-cta-text strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+    /* ===================== METHOD ===================== */
+    #method { background: #F7F5F2; }
+
+    .method-timeline {
+        position: relative;
+    }
+
+    .method-timeline::before {
+        content: '';
+        position: absolute;
+        left: 32px;
+        top: 32px;
+        bottom: 32px;
+        width: 1px;
+        background: linear-gradient(to bottom, var(--red), rgba(255,62,65,0.1));
+    }
+
+    .method-step {
+        display: flex;
+        gap: 32px;
+        margin-bottom: 40px;
+        align-items: flex-start;
+        position: relative;
+    }
+
+    .method-step:last-child { margin-bottom: 0; }
+
+    .step-num-wrap {
+        width: 64px;
+        height: 64px;
+        background: white;
+        border: 2px solid var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .method-step:hover .step-num-wrap {
+        background: var(--red);
+        transform: scale(1.08);
+    }
+
+    .step-num {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--red);
+        line-height: 1;
+        transition: color 0.3s;
+    }
+
+    .method-step:hover .step-num { color: white; }
+
+    .step-body {
+        flex: 1;
+        background: white;
+        border-radius: 12px;
+        padding: 28px 32px;
+        border: 1px solid rgba(0,0,0,0.06);
+        transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .method-step:hover .step-body {
+        box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+        transform: translateX(4px);
+    }
+
+    .step-title {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--dark);
+        margin-bottom: 8px;
+    }
+
+    .step-desc {
+        font-size: 0.9rem;
+        color: var(--gray);
+        line-height: 1.7;
+        margin: 0;
+        font-weight: 300;
+    }
+
+    .step-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contact {
+        background: var(--dark);
+        color: white;
+    }
+
+    .contact-info-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .contact-icon {
+        width: 44px; height: 44px;
+        background: rgba(255,62,65,0.1);
+        border: 1px solid rgba(255,62,65,0.2);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        color: var(--red);
+        flex-shrink: 0;
+    }
+
+    .contact-info-label {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.35);
+        margin-bottom: 2px;
+    }
+
+    .contact-info-value {
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.8);
+        font-weight: 400;
+    }
+
+    .engage-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 32px;
+    }
+
+    .engage-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.55);
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-weight: 300;
+    }
+
+    .engage-list li:last-child { border-bottom: none; }
+
+    .engage-list li::before {
+        content: '✓';
+        width: 24px; height: 24px;
+        background: rgba(255,62,65,0.15);
+        border: 1px solid rgba(255,62,65,0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: var(--red);
+        flex-shrink: 0;
+    }
+
+    /* Contact Form */
+    .contact-form-wrap {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.09);
+        border-radius: 20px;
+        padding: 40px;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-form-wrap::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--red), var(--yellow));
+    }
+
+    .form-label-custom {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.4);
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 500;
+    }
+
+    .form-control-custom {
+        width: 100%;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        color: white;
+        padding: 13px 16px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.25s, background 0.25s;
+    }
+
+    .form-control-custom::placeholder { color: rgba(255,255,255,0.25); }
+
+    .form-control-custom:focus {
+        border-color: rgba(255,62,65,0.5);
+        background: rgba(255,255,255,0.07);
+    }
+
+    .form-control-custom option { background: #1C1C1C; color: white; }
+
+    .btn-submit {
+        width: 100%;
+        background: var(--red);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 16px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-submit:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255,62,65,0.4);
+    }
+
+    .form-note {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.25);
+        text-align: center;
+        margin-top: 14px;
+        line-height: 1.5;
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+        background: #080808;
+        border-top: 1px solid rgba(255,255,255,0.04);
+        padding-top: 64px;
+    }
+
+    .footer-brand-text {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 16px;
+    }
+
+    .footer-brand-text span { color: var(--red); }
+
+    .footer-about {
+        font-size: 0.88rem;
+        color: rgba(255,255,255,0.35);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        max-width: 280px;
+        font-weight: 300;
+    }
+
+    .footer-heading {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-links { list-style: none; padding: 0; }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+        font-size: 0.88rem;
+        color: rgba(255,255,255,0.35);
+        text-decoration: none;
+        transition: color 0.2s, padding-left 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .footer-links a:hover { color: var(--red); padding-left: 4px; }
+
+    .social-links { display: flex; gap: 10px; }
+
+    .social-icon {
+        width: 40px; height: 40px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.4);
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .social-icon:hover {
+        background: rgba(255,62,65,0.15);
+        border-color: rgba(255,62,65,0.3);
+        color: var(--red);
+        transform: translateY(-3px);
+    }
+
+    .newsletter-form-footer {
+        display: flex;
+        margin-top: 16px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .newsletter-input-footer {
+        flex: 1;
+        background: rgba(255,255,255,0.04);
+        border: none;
+        padding: 12px 14px;
+        color: white;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.85rem;
+        outline: none;
+    }
+
+    .newsletter-input-footer::placeholder { color: rgba(255,255,255,0.25); }
+
+    .newsletter-btn-footer {
+        background: var(--red);
+        border: none;
+        color: white;
+        padding: 0 18px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: background 0.2s;
+        white-space: nowrap;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .newsletter-btn-footer:hover { background: var(--red-dark); }
+
+    .copyright {
+        border-top: 1px solid rgba(255,255,255,0.04);
+        margin-top: 52px;
+        padding: 20px 0;
+    }
+
+    .copyright-text {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.2);
+    }
+
+    .copyright-links a {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.2);
+        text-decoration: none;
+        transition: color 0.2s;
+        margin-left: 20px;
+    }
+
+    .copyright-links a:hover { color: var(--red); }
+
+    /* ===================== WHATSAPP ===================== */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 28px; right: 28px;
+        background: #25D366;
+        color: white;
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+        z-index: 9999;
+        text-decoration: none;
+        transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 32px rgba(37,211,102,0.5);
+        color: white;
+    }
+
+    .whatsapp-float .pulse-ring {
+        position: absolute;
+        inset: -6px;
+        border: 2px solid rgba(37,211,102,0.4);
+        border-radius: 50%;
+        animation: pulse-ring 2s ease-out infinite;
+    }
+
+    @keyframes pulse-ring {
+        0%   { transform: scale(0.9); opacity: 0.8; }
+        100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    /* ===================== ANIMATIONS ===================== */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 991px) {
+        .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+        .hero-stat { border-right: none; margin-right: 0; min-width: 100px; }
+        .method-timeline::before { display: none; }
+    }
+
+    @media (max-width: 767px) {
+        section { padding: 72px 0; }
+        .hero-title { letter-spacing: -0.5px; }
+        .hero-stats { flex-direction: column; gap: 16px; }
+        .contact-form-wrap { padding: 28px 20px; }
+        .hero-card-main { display: none; }
+    }
+    </style>
+</head>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/2250789582728" class="whatsapp-float" target="_blank" title="Contactez-nous sur WhatsApp">
+    <div class="pulse-ring"></div>
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<body>
+    <!-- ===================== HEADER ===================== -->
+    <header id="mainHeader">
+        <nav class="navbar navbar-expand-lg container">
+            <a class="navbar-brand" href="#">
+                <div class="brand-dot"></div>
+                <div class="brand-text"><span>MASS</span>PUB</div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="nav">
+                <ul class="navbar-nav align-items-lg-center gap-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#results">Résultats</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#method">Méthode</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="#contact" class="nav-link btn-nav">Audit Gratuit</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-glow glow-red"></div>
+        <div class="hero-glow glow-yellow"></div>
+
+        <!-- Ticker -->
+        <div class="hero-ticker">
+            <div class="ticker-track">
+                <span class="ticker-item">Google Ads <span class="sep">◆</span></span>
+                <span class="ticker-item">Social Media Ads <span class="sep">◆</span></span>
+                <span class="ticker-item">Performance Marketing <span class="sep">◆</span></span>
+                <span class="ticker-item">ROI Mesurable <span class="sep">◆</span></span>
+                <span class="ticker-item">Data-Driven <span class="sep">◆</span></span>
+                <span class="ticker-item">Programmatique <span class="sep">◆</span></span>
+                <span class="ticker-item">Google Ads <span class="sep">◆</span></span>
+                <span class="ticker-item">Social Media Ads <span class="sep">◆</span></span>
+                <span class="ticker-item">Performance Marketing <span class="sep">◆</span></span>
+                <span class="ticker-item">ROI Mesurable <span class="sep">◆</span></span>
+                <span class="ticker-item">Data-Driven <span class="sep">◆</span></span>
+                <span class="ticker-item">Programmatique <span class="sep">◆</span></span>
+            </div>
+        </div>
+
+        <div class="container hero-content">
+            <div class="row align-items-center g-5">
+
+                    <h1 class="hero-title">
+                        Publicité Digitale<br>
+                        qui <span class="accent">Génère</span> du<br>
+                        <span class="outline">ROI Réel</span>
+                    </h1>
+
+                    <p class="hero-sub">
+                        Nous transformons votre budget pub en ventes concrètes avec une approche
+                        <strong>data-driven</strong> et des stratégies taillées pour performer.
+                        <strong>+45% de croissance</strong> moyenne pour nos clients.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn-primary-main">
+                            Démarrer un projet <i class="fas fa-arrow-right fa-sm"></i>
+                        </a>
+                        <a href="#results" class="btn-ghost">
+                            Voir les résultats
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">+45%</div>
+                            <div class="hero-stat-label">Croissance CA<br>moyenne clients</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">127</div>
+                            <div class="hero-stat-label">Clients actifs<br>satisfaits</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">5M€</div>
+                            <div class="hero-stat-label">Budget géré<br>en 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right visual -->
+                <div class="col-lg-5 hero-visual">
+                    <div class="hero-card-main">
+                        <div class="card-label">Performance live — Campagnes actives</div>
+
+                        <div class="metric-row">
+                            <span class="metric-bar-label">Google Ads</span>
+                            <div class="metric-bar-track">
+                                <div class="metric-bar-fill fill-red" style="width:88%"></div>
+                            </div>
+                            <span class="metric-val">88%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-bar-label">Meta Ads</span>
+                            <div class="metric-bar-track">
+                                <div class="metric-bar-fill fill-yellow" style="width:76%"></div>
+                            </div>
+                            <span class="metric-val">76%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-bar-label">TikTok Ads</span>
+                            <div class="metric-bar-track">
+                                <div class="metric-bar-fill fill-blue" style="width:64%"></div>
+                            </div>
+                            <span class="metric-val">64%</span>
+                        </div>
+                        <div class="metric-row" style="margin-bottom:0">
+                            <span class="metric-bar-label">Programmatic</span>
+                            <div class="metric-bar-track">
+                                <div class="metric-bar-fill fill-green" style="width:71%"></div>
+                            </div>
+                            <span class="metric-val">71%</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-card-secondary">
+                        <div>
+                            <div class="big-metric">×3.2</div>
+                        </div>
+                        <div>
+                            <div class="big-metric-label">ROI moyen multiplié<br>en 6 mois de collaboration</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== BRANDS ===================== -->
+    <div class="brands-strip">
+        <div class="brands-track">
+            <span class="brand-item">Google <span class="sep">◆</span></span>
+            <span class="brand-item">Meta <span class="sep">◆</span></span>
+            <span class="brand-item">TikTok <span class="sep">◆</span></span>
+            <span class="brand-item">LinkedIn <span class="sep">◆</span></span>
+            <span class="brand-item">Amazon Ads <span class="sep">◆</span></span>
+            <span class="brand-item">Snapchat <span class="sep">◆</span></span>
+            <span class="brand-item">YouTube <span class="sep">◆</span></span>
+            <span class="brand-item">Programmatique <span class="sep">◆</span></span>
+            <span class="brand-item">Google <span class="sep">◆</span></span>
+            <span class="brand-item">Meta <span class="sep">◆</span></span>
+            <span class="brand-item">TikTok <span class="sep">◆</span></span>
+            <span class="brand-item">LinkedIn <span class="sep">◆</span></span>
+            <span class="brand-item">Amazon Ads <span class="sep">◆</span></span>
+            <span class="brand-item">Snapchat <span class="sep">◆</span></span>
+            <span class="brand-item">YouTube <span class="sep">◆</span></span>
+            <span class="brand-item">Programmatique <span class="sep">◆</span></span>
+        </div>
+    </div>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services">
+        <div class="container">
+            <div class="row services-intro align-items-end">
+                <div class="col-lg-6" data-aos="fade-up">
+                    <div class="section-tag">Ce qu'on fait</div>
+                    <h2 class="section-title">Nos Services<br>Publicitaires</h2>
+                </div>
+                <div class="col-lg-5 offset-lg-1" data-aos="fade-up" data-aos-delay="100">
+                    <p class="section-subtitle">Des expertises complémentaires pour couvrir l'ensemble de votre écosystème digital et maximiser chaque euro investi.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="service-card">
+                        <div class="service-num">01 —</div>
+                        <div class="service-icon-wrap">🎯</div>
+                        <div class="service-name">Google Ads</div>
+                        <p class="service-desc">Campagnes Search, Display et Shopping optimisées pour convertir. Gestion des enchères avec suivi de performance en temps réel et optimisation continue.</p>
+                        <div class="service-tags">
+                            <span class="stag">Search</span>
+                            <span class="stag">Shopping</span>
+                            <span class="stag">Display</span>
+                            <span class="stag">YouTube</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-num">02 —</div>
+                        <div class="service-icon-wrap">📱</div>
+                        <div class="service-name">Social Ads</div>
+                        <p class="service-desc">Facebook, Instagram, LinkedIn et TikTok. Création de contenus engageants et ciblage ultra-précis des audiences pour maximiser vos conversions.</p>
+                        <div class="service-tags">
+                            <span class="stag">Meta Ads</span>
+                            <span class="stag">TikTok</span>
+                            <span class="stag">LinkedIn</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-num">03 —</div>
+                        <div class="service-icon-wrap">📊</div>
+                        <div class="service-name">Programmatique</div>
+                        <p class="service-desc">Achat média automatisé sur 15+ plateformes. Optimisation algorithmique en temps réel pour un ROAS maximum. Display, vidéo et native.</p>
+                        <div class="service-tags">
+                            <span class="stag">DV360</span>
+                            <span class="stag">TTD</span>
+                            <span class="stag">Native</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+                    <div class="service-card">
+                        <div class="service-num">04 —</div>
+                        <div class="service-icon-wrap">🔍</div>
+                        <div class="service-name">SEO & Contenu</div>
+                        <p class="service-desc">Stratégie de référencement naturel et création de contenus qui captent un trafic qualifié sur la durée, en complément de vos campagnes payantes.</p>
+                        <div class="service-tags">
+                            <span class="stag">SEO Tech</span>
+                            <span class="stag">Content</span>
+                            <span class="stag">Link Building</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <div class="service-card">
+                        <div class="service-num">05 —</div>
+                        <div class="service-icon-wrap">📈</div>
+                        <div class="service-name">Analytics & Data</div>
+                        <p class="service-desc">Dashboards sur-mesure, tracking avancé (GA4, GTM) et rapports de performance clairs pour piloter chaque décision marketing par la donnée.</p>
+                        <div class="service-tags">
+                            <span class="stag">GA4</span>
+                            <span class="stag">Looker Studio</span>
+                            <span class="stag">GTM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+                    <div class="service-card">
+                        <div class="service-num">06 —</div>
+                        <div class="service-icon-wrap">🎓</div>
+                        <div class="service-name">Formation & Conseil</div>
+                        <p class="service-desc">Montez en compétences avec nos formations sur mesure. Audit de vos campagnes actuelles et recommandations stratégiques actionnables.</p>
+                        <div class="service-tags">
+                            <span class="stag">Workshop</span>
+                            <span class="stag">Audit</span>
+                            <span class="stag">Coaching</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== RESULTS ===================== -->
+    <section id="results">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="section-tag justify-content-center" style="color:rgba(255,62,65,0.9)">Nos chiffres</div>
+                <h2 class="section-title" style="color:white">Résultats Concrets</h2>
+                <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,0.4);text-align:center">Des performances vérifiables, pas des promesses.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                    <div class="result-card">
+                        <span class="result-icon">🚀</span>
+                        <div class="stat-number">+45%</div>
+                        <p class="stat-desc">Augmentation moyenne du chiffre d'affaires client</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="result-card">
+                        <span class="result-icon">💰</span>
+                        <div class="stat-number">-32%</div>
+                        <p class="stat-desc">Réduction du coût par acquisition en moyenne</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="result-card">
+                        <span class="result-icon">📊</span>
+                        <div class="stat-number">5M€+</div>
+                        <p class="stat-desc">De budget publicitaire géré et optimisé en 2024</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="result-card">
+                        <span class="result-icon">🏆</span>
+                        <div class="stat-number">127</div>
+                        <p class="stat-desc">Clients satisfaits , Europe et Afrique</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
+                    <p class="results-cta-text">Nos clients ont vu leur ROI publicitaire augmenter en moyenne de <strong>3,2x en 6 mois</strong> de collaboration.</p>
+                    <a href="#contact" class="btn-primary-main mt-4" style="display:inline-flex">
+                        Obtenir ces résultats <i class="fas fa-arrow-right fa-sm ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== METHOD ===================== -->
+    <section id="method">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-5" data-aos="fade-up">
+                    <div class="section-tag">Comment ça marche</div>
+                    <h2 class="section-title">Notre Méthode<br>en 4 Étapes</h2>
+                    <p class="section-subtitle">Un processus éprouvé, transparent et orienté résultats dès le premier mois.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="method-timeline">
+                        <div class="method-step">
+                            <div class="step-num-wrap">
+                                <span class="step-num">01</span>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-title">Audit & Stratégie</div>
+                                <p class="step-desc">Analyse approfondie de votre marché, de vos concurrents et de votre audience. Définition d'une stratégie publicitaire sur-mesure avec des objectifs SMART et des KPIs clairs.</p>
+                                <div class="step-tags">
+                                    <span class="stag">Audit complet</span>
+                                    <span class="stag">Étude concurrentielle</span>
+                                    <span class="stag">Roadmap</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="method-step" data-aos="fade-up" data-aos-delay="80">
+                            <div class="step-num-wrap">
+                                <span class="step-num">02</span>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-title">Mise en Œuvre & Optimisation</div>
+                                <p class="step-desc">Création et lancement des campagnes sur les plateformes adéquates. Tests A/B permanents, optimisation des audiences et du message pour maximiser la performance.</p>
+                                <div class="step-tags">
+                                    <span class="stag">Tests A/B</span>
+                                    <span class="stag">Création créa</span>
+                                    <span class="stag">Ciblage précis</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="method-step" data-aos="fade-up" data-aos-delay="160">
+                            <div class="step-num-wrap">
+                                <span class="step-num">03</span>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-title">Suivi & Analyse</div>
+                                <p class="step-desc">Surveillance en temps réel des performances. Rapports détaillés avec indicateurs clés (ROAS, CPA, CTR, LTV). Réunions de suivi hebdomadaires avec votre équipe.</p>
+                                <div class="step-tags">
+                                    <span class="stag">Dashboard live</span>
+                                    <span class="stag">Reporting</span>
+                                    <span class="stag">Réunions hebdo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="method-step" data-aos="fade-up" data-aos-delay="240">
+                            <div class="step-num-wrap">
+                                <span class="step-num">04</span>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-title">Scale & Croissance</div>
+                                <p class="step-desc">Augmentation progressive du budget sur les canaux performants. Expansion vers de nouvelles audiences et marchés pour une croissance durable et prévisible.</p>
+                                <div class="step-tags">
+                                    <span class="stag">Scaling</span>
+                                    <span class="stag">Nouveaux marchés</span>
+                                    <span class="stag">Croissance durable</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 d-none d-lg-flex align-items-center justify-content-center" data-aos="fade-left">
+                    <div style="background:var(--dark);border-radius:20px;padding:40px;text-align:center;width:100%;">
+                        <div style="font-family:'Syne',sans-serif;font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:24px;">Résultats garantis en</div>
+                        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:5rem;color:var(--red);line-height:1;letter-spacing:-2px;">90</div>
+                        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;color:white;margin-bottom:8px;">Jours</div>
+                        <div style="font-size:0.85rem;color:rgba(255,255,255,0.4);line-height:1.6;margin-bottom:28px;">Ou on continue<br>gratuitement jusqu'à<br>l'atteinte des objectifs.</div>
+                        <a href="#contact" class="btn-primary-main" style="width:100%;justify-content:center;">Commencer →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+                <!-- Left info -->
+                <div class="col-lg-5" data-aos="fade-up">
+                    <div class="section-tag" style="color:rgba(255,62,65,0.8)">Passons à l'action</div>
+                    <h2 class="section-title" style="color:white">Prêt à Booster<br>Vos Ventes ?</h2>
+                    <p class="section-subtitle" style="color:rgba(255,255,255,0.4);margin-bottom:36px;">Demandez votre audit gratuit. Nous analyserons vos campagnes et proposerons un plan d'action personnalisé sous 24h.</p>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="contact-info-label">Email</div>
+                            <div class="contact-info-value">masspub@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <div class="contact-info-label">Téléphone</div>
+                            <div class="contact-info-value">07 77 08 68 41</div>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <div class="contact-info-label">Adresse</div>
+                            <div class="contact-info-value">esma, Abidjan, Côte d'Ivoire</div>
+                        </div>
+                    </div>
+
+                    <ul class="engage-list">
+                        <li>Audit gratuit et sans engagement</li>
+                        <li>Transparence totale sur les performances</li>
+                        <li>Experts certifiés Google & Meta</li>
+                        <li>Résultats mesurables en 90 jours</li>
+                        <li>Réponse garantie sous 24h ouvrées</li>
+                    </ul>
+                </div>
+
+                <!-- Right form -->
+                <div class="col-lg-7" data-aos="fade-up" data-aos-delay="150">
+                    <div class="contact-form-wrap">
+                        <div style="margin-bottom:28px;">
+                            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;color:white;margin-bottom:6px;">Demandez votre audit gratuit</div>
+                            <div style="font-size:0.85rem;color:rgba(255,255,255,0.35);">Remplissez ce formulaire · Réponse sous 24h</div>
+                        </div>
+
+                        <form id="contactForm" action="https://formspree.io/f/mdalkqon" method="POST">
+                            <input type="hidden" name="_next" value="merci.html">
+                            <input type="text" name="_honey" style="display:none">
+                            <input type="hidden" name="_captcha" value="false">
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Votre nom *</label>
+                                    <input type="text" name="nom" class="form-control-custom" placeholder="mohamed coulibaly" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Entreprise</label>
+                                    <input type="text" name="entreprise" class="form-control-custom" placeholder="Ma Société SAS">
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Email *</label>
+                                    <input type="email" name="email" class="form-control-custom" placeholder="mohamedcoulibaly@gmail.com*" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Téléphone *</label>
+                                    <input type="tel" name="telephone" class="form-control-custom" placeholder="+225 XX XX XX XX" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label-custom">Service souhaité</label>
+                                <select name="service" class="form-control-custom">
+                                    <option value="">Choisissez un service</option>
+                                    <option>Google Ads</option>
+                                    <option>Social Ads (Facebook, Instagram, TikTok)</option>
+                                    <option>Publicité Programmatique</option>
+                                    <option>SEO & Contenu</option>
+                                    <option>Analytics & Data</option>
+                                    <option>Stratégie Digitale Complète</option>
+                                    <option>Formation & Conseil</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label-custom">Votre objectif *</label>
+                                <textarea name="message" class="form-control-custom" rows="4" placeholder="Décrivez votre projet, vos objectifs, votre budget approximatif..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                Demander mon audit gratuit →
+                            </button>
+
+                            <p class="form-note">En soumettant ce formulaire, vous acceptez d'être contacté par MassPub. Aucun engagement.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <!-- Brand -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="#" class="footer-brand-text"><span>MASS</span>PUB</a>
+                    <p class="footer-about">Agence de publicité digitale spécialisée dans la génération de leads et l'augmentation du ROI. Nous transformons votre budget en résultats concrets.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1CFUTJRkBY/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Nos services</a></li>
+                        <li><a href="#results">Nos résultats</a></li>
+                        <li><a href="#method">Notre méthode</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#contact">Audit gratuit</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-lg-3 col-md-6 col-6">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact">Google Ads</a></li>
+                        <li><a href="#contact">Social Ads</a></li>
+                        <li><a href="#contact">Programmatique</a></li>
+                        <li><a href="#contact">SEO & Contenu</a></li>
+                        <li><a href="#contact">Analytics</a></li>
+                        <li><a href="#contact">Formation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="footer-heading">Newsletter</h4>
+                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.3);line-height:1.6;margin-bottom:0;font-weight:300;">Conseils exclusifs et études de cas marketing chaque semaine.</p>
+                    <div class="newsletter-form-footer">
+                        <input type="email" class="newsletter-input-footer" placeholder="votre@email.com">
+                        <button class="newsletter-btn-footer" id="nlBtn">S'abonner</button>
+                    </div>
+                    <p style="font-size:0.75rem;color:rgba(255,255,255,0.18);margin-top:10px;">Pas de spam · Désabonnement facile</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-2 mb-md-0">
+                        <span class="copyright-text">© 2025 MassPub — Agence de Publicité Digitale. Tous droits réservés.</span>
+                    </div>
+                    <div class="col-md-6 text-md-end copyright-links">
+                        <a href="#">Mentions légales</a>
+                        <a href="#">Confidentialité</a>
+                        <a href="#">CGU</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    // AOS
+    AOS.init({ duration: 800, once: true, offset: 80, easing: 'ease-out-cubic' });
+
+    // Header scroll
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const id = a.getAttribute('href');
+            if (id === '#') return;
+            const el = document.querySelector(id);
+            if (el) {
+                e.preventDefault();
+                window.scrollTo({ top: el.offsetTop - 76, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Counter animation
+    function animateCount(el) {
+        const text = el.dataset.target;
+        const num  = parseFloat(text.replace(/[^0-9.]/g, ''));
+        const prefix = text.match(/^[^0-9]*/)?.[0] || '';
+        const suffix = text.match(/[^0-9.]+$/)?.[0] || '';
+        if (!num) return;
+        const dur = 1800;
+        let start;
+        const step = ts => {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const val = (num * eased);
+            el.textContent = prefix + (num % 1 ? val.toFixed(1) : Math.round(val)) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    }
+
+    const statObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.querySelectorAll('.stat-number').forEach(el => {
+                    el.dataset.target = el.textContent;
+                    animateCount(el);
+                });
+                statObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    const resultsSection = document.querySelector('#results');
+    if (resultsSection) statObs.observe(resultsSection);
+
+    // Formspree
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('contactForm');
+        if (!form) return;
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = form.querySelector('.btn-submit');
+            btn.textContent = 'Envoi en cours...';
+            btn.style.opacity = '0.7';
+            fetch('https://formspree.io/f/mdalkqon', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(r => {
+                if (r.ok) window.location.href = 'merci.html';
+                else { btn.textContent = 'Erreur — Réessayez'; btn.style.opacity = '1'; }
+            })
+            .catch(() => { btn.textContent = 'Problème réseau'; btn.style.opacity = '1'; });
+        });
+    });
+
+    // Newsletter
+    document.getElementById('nlBtn')?.addEventListener('click', () => {
+        const inp = document.querySelector('.newsletter-input-footer');
+        if (inp?.value) {
+            inp.value = '';
+            document.getElementById('nlBtn').textContent = '✓ OK !';
+            setTimeout(() => document.getElementById('nlBtn').textContent = 'S\'abonner', 2500);
+        }
+    });
+    </script>
+</body>
+</html>
